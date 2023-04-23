@@ -1,10 +1,3 @@
-/crud-using-react/node_modules
-/crud-using-react/src/server/node_modules
-/plain-redux/node_modules
-/prop-types/node_modules
-/props/node_modules
-/react-forms/node_modules
-/react-redux/node_modules
-/react-routing/node_modules
-/use-reducer-hook/node_modules
-/react-workshop.code-workspace
+**/node_modules
+**/package-lock.json
+react-workshop.code-workspace
