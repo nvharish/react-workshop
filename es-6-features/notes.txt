@@ -1,0 +1,53 @@
+Extensions Required
+===================
+Auto Rename Tag
+v0.1.10
+Jun Han
+---------------
+Live Server
+v5.7.9
+Ritwick Dey
+---------------
+Mithril Emmet
+v0.7.7
+FallenMax
+---------------
+open in browser
+v2.0.0
+TechER
+---------------
+Prettier - Code formatter
+v9.10.4
+Prettier
+---------------
+vscode-icons
+v12.2.0
+VSCode Icons Team
+---------------
+
+
+shortcuts
+---------------
+create a file with extension .html
+html:5 / !
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ES 6 Features
+==============
+>> events in JS
+>> virtual elements
+>> creating, accessing and deleting the virtual element
+
+>>  functional improvements
+>>	default parameters
+>>	rest and spread syntax along with destructuring
+>>	arrow function
+
+>> templates literals
+>> array methods
+>>  foreach
+>>  map
+>>  filter
+>>  reduce
+
+class and module

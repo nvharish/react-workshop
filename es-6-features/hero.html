@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arrow function managing scope</title>
+    <script>
+
+        /* 
+        var hero = {
+            name : "Hero",
+            version : 1001,
+            saypower : function(){
+                return 7;
+            },
+            saygreeting : function(){
+                // console.log(this);// Hero
+                var booster = function(scope) {
+                    return scope.saypower() * 10;
+                };
+                return "hello my power was "+this.saypower()+" which is now boosted to "+ booster(this);
+            }
+        }; 
+        */
+
+        var hero = {
+            name : "Hero",
+            version : 1001,
+            saypower : function(){
+                return 7;
+            },
+            saygreeting : function(){
+                var booster = function(boost) {
+                    return this.saypower() * boost;
+                };
+                return "hello my power was "+this.saypower()+" which is now boosted to "+ booster.bind(this)(10);
+            }
+        };
+
+        console.log( hero.saypower() );
+        console.log( hero.saygreeting() );
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

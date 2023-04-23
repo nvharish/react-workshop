@@ -1,0 +1,368 @@
+################################################################################
+------------------ Component Types
+
+    import { Component } from "react";
+     
+    class ClassComp extends Component{
+        render(){
+            console.log("ClassComp was rendered", Math.random());
+            return <div>
+                        <h1>Class Component</h1>
+                        <h2>Power : { this.props.power }</h2>
+                        <h2>Version : { this.props.version }</h2>
+                    </div>
+        }
+    }
+     
+    export default ClassComp
+     
+++++++++++++++++++++++++++++++++++++++++++++++++++
+     
+     
+    import { PureComponent } from "react";
+     
+    class PureClassComp extends PureComponent{
+        render(){
+            console.log("PureClassComp was rendered", Math.random());
+            return <div>
+                        <h1>Pure Class Component</h1>
+                        <h2>Power : { this.props.power }</h2>
+                        <h2>Version : { this.props.version }</h2>
+                    </div>
+        }
+    }
+     
+    export default PureClassComp
+     
+     
+    ++++++++++++++++++++++++++++++++++++++++++++++++++
+     
+    let FunComp = (props)=>{
+        console.log("Function Component was rendered", Math.random());
+        return <div>
+                    <h1>Function Component</h1>
+                    <h2>Power : { props.power }</h2>
+                    <h2>Version : { props.version }</h2>
+                </div>
+    }
+     
+    export default FunComp;
+     
+     
+    ++++++++++++++++++++++++++++++++++++++++++++++++++
+     
+     
+    import {memo} from "react";
+     
+    let MemoFunComp = (props)=>{
+        console.log("Memo Function Component was rendered", Math.random());
+        return <div>
+                    <h1>Memo Function Component</h1>
+                    <h2>Power : { props.power }</h2>
+                    <h2>Version : { props.version }</h2>
+                </div>
+    }
+     
+    export default memo(MemoFunComp);
+     
+    ++++++++++++++++++++++++++++++++++++++++++++++++++
+     
+    import React, { Component } from "react";
+    import ClassComp from "./components/classcomp";
+    import PureClassComp from "./components/pureclasscomp";
+    import FunComp from "./components/funcomp";
+    import Memofuncomp from "./components/memofuncomp";
+     
+    class App extends Component{
+        state = {
+            power : 1,
+            version : 0
+        }
+     
+        increasePower = () => {
+            this.setState({ power : this.state.power + 1 })
+        }
+        setVersion = () => {
+            this.setState({ version : 101 })
+        }
+       
+        render(){
+            return <div style={ {border : "2px solid red", padding : "10px"} }>
+                       <h2>App Component </h2>
+                       <h3>Power is { this.state.power }</h3>
+                       <button onClick={ this.increasePower }>Increase Power</button>
+                       <button onClick={ this.setVersion }>Set Version to 101</button>
+                       <hr />
+                       <ClassComp version={ this.state.version } power={ this.state.power }/>
+                       <PureClassComp version={ this.state.version } power={ this.state.power }/>                
+                       <FunComp version={ this.state.version } power={ this.state.power }/>
+                       <Memofuncomp version={ this.state.version } power={ this.state.power }/>
+                   </div>
+        }
+    }
+     
+    export default App;
+     
+    /*
+    Class Component 
+    Class PureComponent
+     
+    Function Component 
+    Function Memo Component 
+    -----------------------
+     
+    HOC 
+    Presentation Component 
+    Data Component 
+    */
+
+
+    ########################################################################
+    step2 example
+    ------------------ Hooks 
+
+
+import { useState } from "react";
+
+let App = ()=>{
+    // console.log( useState() );
+
+/*     
+    let [power, setPower] = useState(1);
+    let [version, setVersion] = useState(101); 
+*/
+
+    let [state, setState] = useState({ power : 1, version : 101 })
+
+    return <div style={ {border : "2px solid red", padding : "10px"} }>
+                <h2>App Component </h2>
+                <h3>Power is { state.power }</h3>
+                <h3>Version is { state.version }</h3>
+               {/*  <button onClick={ ()=> setState({ power : state.power+1, version : state.version }) }>Increase Power</button>
+                <button onClick={ ()=> setState({ power : state.power, version : state.version+1 }) }>Set Version to 201</button> */}
+                 <button onClick={ ()=> setState({ ...state, power : state.power + 1 }) }>Increase Power</button>
+                <button onClick={ ()=> setState({ ...state, version : state.version + 1 }) }>Set Version to 201</button>
+            </div>
+}
+
+export default App;
+
+
+########################################################################
+    step3 useRef Hook
+------------------ Hooks 
+
+    import { useRef, useState } from "react";
+     
+    const App = () => {
+        let [power, setPower] = useState(1);
+        /* let ipref = React.createRef() */
+        let ipref = useRef();
+        return <div style={ {border : "2px solid red", padding : "10px"} }>
+                    <h2>App Component </h2>
+                    <h3>Power is { power }</h3>
+                   <input ref={ipref} type="number" />
+                   <button onClick={ ()=> setPower( Number( ipref.current.value ) ) }>Set Power</button>
+                </div>
+    }
+     
+    export default App;
+
+########################################################################
+    step4 useEffect Hook
+------------------ Hooks 
+
+    import { useEffect } from "react";
+     
+    const ChildComp = (props) => {
+       /*  
+       // called when component is mounted
+        useEffect(()=>{
+            console.log("Component was mounted");
+        },[]);
+        
+        // called when component's power is updated
+        useEffect(()=>{
+            console.log("Component's power was updated", Math.random() );
+        },[props.power]);
+        
+        // called when component is unmounted
+        useEffect(()=>{
+            return ()=>{
+                console.log("Component was unmounted");
+            }
+        },[]);
+        */
+     
+        useEffect(()=>{
+            console.log("Component was mounted");
+            console.log("Component's power was updated", Math.random() );
+            return ()=>{
+                console.log("Component was unmounted");
+            }
+        },[props.power]);
+        
+        
+        return <div style={ {border : "2px solid blue", padding : "10px"} }>
+                    <h2>ChildComp Component </h2>
+                    <h2>Power is : { props.power }</h2>
+                    <h2>Version is : { props.version }</h2>
+               </div>
+    }
+     
+    export default ChildComp;
+
+
+########################################################################
+    step5 useEffect to make Ajax call
+------------------ Hooks 
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+const ChildComp = (props) => {
+    let [users, updateUsers] = useState([]);
+   // called when component is mounted
+    useEffect(()=>{
+        axios.get("https://reqres.in/api/users?page=2").then(res => updateUsers(res.data.data) )
+    },[]);
+    
+    return <div style={ {border : "2px solid blue", padding : "10px"} }>
+                <h2>ChildComp Component </h2>
+                <h2>Power is : { props.power }</h2>
+                <h2>Version is : { props.version }</h2>
+                <hr />
+                <ol>
+                    {
+                        users.map( (user) => <li key={ user.id }>{ user.first_name }</li>)
+                    }
+                </ol>
+           </div>
+}
+
+export default ChildComp;
+
+########################################################################
+    step6 understand context
+------------------ Context API 
+
+    childcomp.jsx
+    -------------
+     
+    import { Component } from "react"
+    import { FamilyConsumer } from "../contexts/familycontext";
+     
+    class ChildComp extends Component{
+       render(){
+        return  <div style={ {border : "2px solid red", padding : "10px", margin : "10px"} }>
+                        <h2>Child Component Component</h2>
+                        <FamilyConsumer>{function(val){
+                           return <h3>{ val }</h3>
+                        }}</FamilyConsumer>
+                </div>
+       }
+    }
+     
+    export default ChildComp;
+     
+    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    cousincomp.jsx
+    -------------
+     
+    import { Component } from "react";
+    import { FamilyConsumer } from "../contexts/familycontext";
+     
+    class CousinComp extends Component{
+        render(){
+            return <div style={ {border : "2px solid red", padding : "10px", margin : "10px"} }>
+                    <h2>Cousin Component Component</h2>
+                    <FamilyConsumer>{(val) => {
+                        return <h3>{ val }</h3>
+                    }}</FamilyConsumer>
+               </div>
+        }
+    }
+     
+    export default CousinComp;
+    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    grandcomp.jsx
+    -------------
+     
+    import React, { Component } from "react";
+    import ParentComp from "./parentcomp";
+    import { FamilyProvider } from "../contexts/familycontext";
+    import CousinComp from "./cousincomp";
+     
+    class GrandComp extends Component{
+        state = {
+            message : ''
+        }
+        ipref = React.createRef();
+        setMessage = ()=>{
+            this.setState({
+                message : this.ipref.current.value
+            })
+        }
+        render(){
+            return <div style={ {border : "2px solid red", padding : "10px", margin : "10px"} }>
+                        <h2>Grand Component Component</h2>
+                        <h3>Message is : { this.state.message }</h3>
+                        <input ref={ this.ipref } type="text" />
+                        <button onClick={ this.setMessage }>Set Message</button>
+                        <FamilyProvider value={ this.state.message }>
+                            <ParentComp/>
+                            <CousinComp/>
+                        </FamilyProvider>
+                    </div>
+        }
+    }
+     
+    export default GrandComp;
+     
+    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    parentcomp.jsx
+    -------------
+     
+    import { Component } from "react";
+    import ChildComp from "./childcomp";
+     
+    class ParentComp extends Component{
+        render(){
+            return <div style={ {border : "2px solid red", padding : "10px", margin : "10px"} }>
+                    <h2>Parent Component Component</h2>
+                    <ChildComp/>
+               </div>
+        }
+    }
+     
+    export default ParentComp;
+     
+    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    familycontext.js
+    -------------
+     
+    import { createContext } from "react";
+    const FamilyContext = createContext();
+     
+    let FamilyProvider = FamilyContext.Provider;
+    let FamilyConsumer = FamilyContext.Consumer;
+     
+    export { FamilyProvider, FamilyConsumer }
+     
+     
+    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    app.jsx
+    -----------
+     
+    import GrandComp from "./components/grandcomp";
+     
+    const App = () => {
+        return <div style={ {border : "2px solid red", padding : "10px"} }>
+                    <h2>Context API</h2>
+                    <GrandComp/>
+               </div>
+    }
+     
+    export default App;
+     
+    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function init(){
+            document.getElementById("box").innerHTML = "welcome to your life";
+        };
+       // window.onload = init;
+       // window.addEventListener("load", init);
+       document.addEventListener("DOMContentLoaded", init);
+    </script>
+    <!-- <style>
+        body{
+            border: 3px solid blue;
+            width: 500px;
+        }
+        span{
+            border: 3px solid red;
+        }
+    </style> -->
+</head>
+<!-- <body onload="init()"> -->
+<body>
+    <span id="box">default message asdf asdfa sdfa sdf</span>
+    <!-- <script>
+        for(var i = 0; i < 1000000; i++){
+            document.getElementById("box").innerHTML = i;
+            console.log(i);
+        }
+    </script> -->
+  <!-- <script>
+       init();
+  </script> -->
+</body>
+</html>
+
+<!-- 
+    objects 
+    tags / elements / components
+ -->
+
+<!-- 
+    html = document
+    html's parent is window
+    window -> (html) document -> head + body
+ -->
+
+ <!-- 
+    block level element : will occupy all the width of the parent
+    inline element : will occupy the width required by its children
+  -->

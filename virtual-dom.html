@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 150px;
+            height: 50px;
+            background-color: dimgray;
+            text-align: center;
+            color: antiquewhite;
+            line-height: 50px;
+        }
+    </style>
+    <script>
+        /* 
+        let elm = document.createElement("div");
+            elm.setAttribute("class", "box");
+            elm.setAttribute("lang", "en");
+            elm.innerText = "welcome to your life";
+
+        document.addEventListener("DOMContentLoaded", function(){
+            document.getElementById("root").appendChild(elm);
+        }); 
+        */
+        let elm = document.createElement("ul");
+        let nestedElm1 = document.createElement("li");
+            nestedElm1.innerText = "List Item 1";
+        let nestedElm2 = document.createElement("li");
+            nestedElm2.innerText = "List Item 2";
+        let nestedElm3 = document.createElement("li");
+            nestedElm3.innerText = "List Item 3";
+        let nestedElm4 = document.createElement("li");
+            nestedElm4.innerText = "List Item 4";
+        
+        elm
+        .appendChild(nestedElm1)
+        .appendChild(nestedElm2)
+        .appendChild(nestedElm3)
+        .appendChild(nestedElm4);
+
+
+        document.addEventListener("DOMContentLoaded", function(){
+            document.getElementById("root").appendChild(elm);
+        });
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>

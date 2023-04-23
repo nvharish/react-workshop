@@ -1,0 +1,201 @@
+import { Component } from "react";
+
+class App extends Component{
+    state = {
+        power : 0
+    }
+    heroes = ['Batman'];
+    render(){
+        return <div>
+            <h1>{ this.state.power }</h1>
+            <h1>{ this.state.info }</h1>
+            <button onClick={()=> this.setState({ power : this.state.power + 1, info : 'my new info' })}>Increase Power</button>
+            <button onClick={()=> this.state.power = 5 }>Increase Power</button>
+            <ul>
+                <li>{ this.heroes[0] }</li>
+                <li>{ this.heroes[1] }</li>
+            </ul>
+            <button onClick={()=> { this.heroes.push('Superman'); this.forceUpdate() } }>Add Hero</button>
+            <button onClick={()=> { this.heroes = ['Ironman', 'Hulk']; this.forceUpdate() } }>Replace Heroes</button>
+            </div>
+    }
+}
+
+export default App;
+
++++++++++++++++++++++++++++++++++++++++++++++++
+
+import { Component } from "react";
+
+class App extends Component{
+    state = {
+        power : 1
+    }
+    /* 
+    constructor(){
+        super();
+        this.increasePower = this.increasePower.bind(this);
+    } 
+    */
+    increasePower = ()=> {
+       this.setState({ power : this.state.power + 1 }); 
+         // alert("hello there")
+    }
+    render(){
+        return <div>
+                    <h1>{ this.state.power }</h1>
+                    {/* <button onClick={  this.increasePower }>Increase Power</button> */}
+                    <button onClick={  this.increasePower.bind(this) }>Increase Power with inline bind</button>
+                    {/* <button onClick={  ()=> this.increasePower() }>Increase Power</button> */}
+                    <button onClick={  this.increasePower }>Increase Power</button>
+               </div>
+    }
+}
+
+export default App;
+
+++++++++++++++++++++++++++++++++++++++++++++
+    import React, { Component } from "react";
+     
+    class App extends Component{
+        state = {
+            power : 1
+        }
+        ipref = React.createRef();
+        /* 
+        constructor(){
+            super();
+            this.increasePower = this.increasePower.bind(this);
+        } 
+        */
+        /*     
+        increasePower = ()=>{
+           this.setState({ power : this.state.power + 1 }); 
+             // alert("hello there")
+        } 
+        */
+     
+        increasePower = ()=>{
+            this.setState({ power : this.state.power + 1 }); 
+        }
+     
+        increasePowerFromRange = (evt)=>{
+            this.setState({ power : Number(evt.target.value) }); 
+         }
+        increasePowerFromNumber = ()=>{
+            this.setState({ power : Number(this.ipref.current.value) }); 
+         }
+        
+        render(){
+            return <div>
+                        <h1>{ this.state.power }</h1>
+                        {/* <button onClick={  this.increasePower }>Increase Power</button> */}
+                        {/*  <button onClick={  this.increasePower.bind(this) }>Increase Power with inline bind</button> */}
+                        {/* <button onClick={  ()=> this.increasePower() }>Increase Power</button> */}
+                        {/* <button onClick={ this.increasePower }>Increase Power</button> */}
+                        <button onClick={ this.increasePower }>Increase Power</button>
+                        <input min="1" max="1000" onInput={ (evt) => this.increasePowerFromRange(evt) } type="range" />
+                        <br />
+                        <br />
+                        <input ref={ this.ipref } type="number" />
+                        <button onClick={ this.increasePowerFromNumber }>Increase Power by </button>
+                   </div>
+        }
+    }
+     
+    export default App;
+++++++++++++++++++++++++++++++++++++++++++++
+
+
+    import React, { Component } from "react";
+     
+    class ChildComp extends Component{
+        ipref = React.createRef()
+        render(){
+            return <div style={ {border : "2px solid blue", padding : "10px"} }>
+                       <h2>Child Component</h2>
+                       <h3>Power is { this.props.power }</h3>
+                       <input ref={ this.ipref } type="text" />
+                       <button onClick={ ()=> this.props.cm(this.ipref.current.value) } >Send Message to Parent</button>
+                   </div>
+        }
+    }
+     
+    export default ChildComp;
+     
+    ====================================================     
+     
+    import React, { Component } from "react";
+    import ChildComp from "./child";
+     
+    class App extends Component{
+        state = {
+            power : 1,
+            message : "default App message"
+        }
+        increasePower = () => {
+            this.setState({ power : this.state.power + 1 })
+        }
+        changeMessage = (nmessage) => {
+            this.setState({ message : nmessage })
+        }
+        render(){
+            return <div style={ {border : "2px solid red", padding : "10px"} }>
+                       <h2>App Component </h2>
+                       <h3>Power is { this.state.power }</h3>
+                       <h3>Message is { this.state.message }</h3>
+                       <button onClick={ this.increasePower }>increase power</button>
+                       <hr />
+                       <ChildComp cm={ this.changeMessage } power={ this.state.power }/>
+                   </div>
+        }
+    }
+     
+    export default App;
+
+
+++++++++++++++++++++++++++++++++++++++++++++
+
+import React, { Component } from "react";
+
+class App extends Component{
+    state = {
+        power : 1,
+        show : false
+    }
+    increasePower = () => {
+        this.setState({ power : this.state.power + 1 });
+    }
+    render(){
+        return <div style={ {border : "2px solid red", padding : "10px"} }>
+                   <h2>App Component </h2>
+                   <h3>Power is { this.state.power }</h3>
+                   <button onClick={ this.increasePower }>Increase Power</button>
+                   <hr />
+                   <label htmlFor="terms">Show Terms and Conditions</label>
+                   <input onChange={()=> this.setState({ show : !this.state.show })} id="terms" type="checkbox" />
+                  {/*  { this.state.show ? <div>
+                    <h3>Terms and Conditions</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt similique rerum ullam provident nemo quas deleniti delectus suscipit ea in nostrum eos aliquam, minima consectetur doloribus ut commodi. Soluta, magnam?
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio ducimus ipsam rem maxime eos, dignissimos, unde reiciendis qui quis consequuntur ab beatae, laborum a deserunt harum enim quo facere. Quam.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum illum illo placeat, accusamus eveniet nesciunt iure velit unde expedita veniam officiis quasi tempore commodi ducimus aperiam quod doloribus ullam id.
+                    </p>
+                   </div> : "terms are hidden" } */}
+                    { this.state.show &&  <div>
+                    <h3>Terms and Conditions</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt similique rerum ullam provident nemo quas deleniti delectus suscipit ea in nostrum eos aliquam, minima consectetur doloribus ut commodi. Soluta, magnam?
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio ducimus ipsam rem maxime eos, dignissimos, unde reiciendis qui quis consequuntur ab beatae, laborum a deserunt harum enim quo facere. Quam.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum illum illo placeat, accusamus eveniet nesciunt iure velit unde expedita veniam officiis quasi tempore commodi ducimus aperiam quod doloribus ullam id.
+                    </p>
+                   </div> }
+               </div>
+    }
+}
+
+export default App;
+
+++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Methods</title>
+    <script>
+        let favnums = [2,7,1,9,4,13,6,8,94,26,70];
+        /* 
+        let total = 0;
+        for(let i = 0; i < favnums.length; i++){
+            total += favnums[i];
+        };
+        console.log(total); 
+        */
+       /*
+       let total = 0;
+       favnums.forEach(function(val, idx, arr){
+           // console.log("value found", arguments.length, val, idx, arr);
+           total += val;
+        });
+        console.log(total);
+       */
+
+       /* 
+       let doubleFavNums = [];
+       favnums.forEach(function(val, idx, arr){
+        doubleFavNums.push(val * 2);
+       });
+       console.log(doubleFavNums); 
+       */
+
+       // map
+       /*        
+        let doubleFavNums = favnums.map(function(val){
+        return val * 2;
+       }); 
+       */
+       /*
+       let doubleFavNums = favnums.map( val => val * 2 );
+       console.log(doubleFavNums); 
+       */
+
+       /*
+       let greaterThan50 = favnums.filter( val => val > 50 );
+       let lessThan50 = favnums.filter( val => val < 50 );
+
+       console.log(greaterThan50);
+       console.log(lessThan50);
+       */
+
+       let total = favnums.reduce(function(initVal, val, idx, arr){
+        return initVal + val;
+       },0);
+
+       console.log(total);
+       
+    </script>
+</head>
+<body>  
+    
+</body>
+</html>

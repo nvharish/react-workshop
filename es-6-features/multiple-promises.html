@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let firstpromise = function(){
+            return new Promise(function(resolve, reject){
+                setTimeout(function(){
+                    if(true){
+                        resolve("First Promise Was Resolved");
+                    }else{
+                        reject("First Promise Was Rejected");
+                    }
+                },2000);
+            });
+        };
+        let secondpromise = function(){
+            return new Promise(function(resolve, reject){
+                setTimeout(function(){
+                    if(false){
+                        resolve("Second Promise Was Resolved");
+                    }else{
+                        reject("Second Promise Was Rejected");
+                    }
+                },1000);
+            });
+        };
+        let thirdpromise = function(){
+            return new Promise(function(resolve, reject){
+                setTimeout(function(){
+                    if(true){
+                        resolve("Third Promise Was Resolved");
+                    }else{
+                        reject("Third Promise Was Rejected");
+                    }
+                },500);
+            });
+        };
+/* 
+        Promise.all([secondpromise(),firstpromise(), thirdpromise()])
+        .then(function(res){
+            console.log(res)
+        }).catch(function(err){
+            console.log(err)
+        }).finally(function(){
+            console.log("all promises done")
+        }) 
+*/
+/*         
+        Promise.any([secondpromise(),firstpromise(), thirdpromise()])
+        .then(function(res){
+            console.log(res)
+        })
+        .catch(function(err){
+            console.log(err)
+        })
+        .finally(function(){
+            console.log("all promises done")
+        }) 
+*/ 
+        Promise.race([secondpromise(),firstpromise(), thirdpromise()])
+        .then(function(res){
+            console.log(res)
+        })
+        .catch(function(err){
+            console.log(err)
+        })
+        .finally(function(){
+            console.log("all promises done")
+        }) 
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

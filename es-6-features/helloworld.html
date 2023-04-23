@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            // virtual H1 element
+            var elm = document.createElement("h1");
+            // put innerhtml in the virtual element
+            elm.innerHTML = "Welcome to your life";
+            // append the virtual element in the body tag
+            document.body.appendChild(elm);
+        };
+
+      /*   document.addEventListener("DOMContentLoaded", function(){
+            // virtual H1 element
+            var elm = document.createElement("h1");
+            // put innerhtml in the virtual element
+            elm.innerHTML = "Welcome to your life";
+            // append the virtual element in the body tag
+            document.body.appendChild(elm);
+        }) */
+    </script>
+</head>
+<body>
+</body>
+</html>

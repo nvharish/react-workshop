@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module">
+        /* import what and from where */
+        import { user, adder } from "./modules/author.js";
+        import Vijay from "./modules/person.js";
+        import { Hero } from "./modules/hero.js";
+
+        console.log( user );
+        console.log( adder(1,2,3,4,5,6) );
+        let vj = new Vijay("vijay can walk");
+        console.log( vj.canWalk );
+
+        let hero = new Hero("Captain America", "Steve", "Rogers", "I can Run");
+
+        console.log(hero.fullname(), hero.canWalk);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

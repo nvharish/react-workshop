@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+        private properties
+        public properties
+
+        private methods
+        public methods 
+
+        constructor
+
+        static properties and methods
+
+        getters and setters 
+        */
+
+        // es6
+       /*  class Hero{
+            constructor(){
+                this.title = "Ironman";
+            }
+        }; */
+        // es7
+        class Person{
+            canWalk = "default walk";
+            constructor(cw){
+                this.canWalk = cw;
+            }
+        }
+        class Hero extends Person{
+            title = "default title";
+            firstname = "default firstname";
+            lastname = "default lastname";
+            #power = 5;
+            static version = 101;
+            constructor(htitle, hfname, hlname, hcw){
+                super(hcw);
+                this.title = htitle;
+                this.firstname = hfname;
+                this.lastname = hlname;
+            };
+            fullname(){
+                return this.firstname+" "+this.lastname;
+            };
+            get power(){
+                return this.#power;
+            };
+            set power(npower){
+                this.#power = npower;
+            };
+        };
+
+        let hero = new Hero("Batman","Bruce", "Wayne", "can walk");
+        console.log(hero.title);
+        console.log(hero.power); // getter 
+        hero.power = 10; // setter 
+        console.log(hero.power);
+        console.log(hero.fullname());
+        console.log(Hero.version);
+        console.log(hero.canWalk);
+
+        console.log("++++++++++++++++++++++++++++++++++");
+        
+        let hero1 = new Hero("Spiderman","Peter", "Parker", "can fly");
+        console.log(hero1.title);
+        console.log(hero1.power); // getter 
+        hero1.power = 10; // setter 
+        console.log(hero1.power);
+        console.log(hero1.fullname());
+        console.log(hero1.canWalk);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

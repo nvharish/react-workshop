@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // create promise
+        let promise = new Promise(function(resolve, reject){
+            setTimeout(function(){
+                if(true){
+                    resolve("Promise Was Kept");
+                }else{
+                    reject("Promise Was Broken");
+                }
+            },2000);
+        });
+        // then response, catch error, finally complete
+       /*  
+        promise
+        .then(function(res){
+            console.log(res);
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+        .finally(function(){
+            console.log("Promise is complete");
+        });
+        */
+        /* 
+        promise
+        .then(
+            function(res){
+                console.log(res);
+            },
+            function(err){
+                console.log(err);
+            })
+        .finally(function(){
+            console.log("Promise is complete");
+        }); 
+        */
+       document.addEventListener("DOMContentLoaded", function(){
+           promise
+           .then( function(res){
+                   document.getElementsByTagName("h1")[0].textContent = res;
+                   return res.toUpperCase();
+            })
+            .then(function(res){
+                    document.getElementsByTagName("h3")[0].textContent = res;
+                    return res.toLowerCase();
+            })
+            .then(function(res){
+                   document.getElementsByTagName("h6")[0].textContent = res;
+            })
+            .catch(function(err){
+                    console.log(err);
+            })
+            .finally(function(){
+                    console.log("Promise is complete");
+            }); 
+        })
+    </script>
+</head>
+<body>
+    <h1>User Name</h1>
+    <h3>User Name</h3>
+    <h6>User Name</h6>
+</body>
+</html>

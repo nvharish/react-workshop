@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest and Spread Syntax</title>
+    <script>
+        // rest parameters 
+        function adder(lable, ...nums){
+            // return arguments.length;
+            // return nums.length;
+            var total = 0;
+            for(let i = 0; i < nums.length; i++){
+                total+=nums[i];
+            };
+            return lable + total;
+        };
+
+        console.log( adder("sum is ") );// 
+        console.log( adder("sum is ",5) );// 
+        console.log( adder("sum is ",5,6) );// 11 
+        console.log( adder("sum is ",5,6,7) );// ??? 
+        console.log( adder("sum is ",5,6,7,8) );// ??? 
+
+        let favnums = [5,6,7,8,9,10,11];
+        // console.log( adder("sum is ", favnums[0], favnums[1], favnums[2], favnums[3], favnums[4], favnums[5], favnums[6]) );// ??? 
+        
+        // spread syntax
+        console.log( adder("sum is ", ...favnums) );// ??? 
+
+        //-------------------------------------------------------
+        var hero = {
+            title : "Ironman",
+            power : 7,
+            city : "New York",
+            firstname : "Tony",
+            lastname : "Stark"
+        };
+
+        // destructuring
+        var firstavenger = {...hero};
+
+        console.log( hero.title );
+        hero.title = "Ironmonger";
+        console.log( hero.title );
+
+        console.log( firstavenger.title );
+
+        let avengers = ["Ironman", "Hulk", "Thor"];
+
+        /* 
+        let firsthero = avengers[0];
+        let secondhero = avengers[1];
+        let thirdhero = avengers[2]; 
+        */
+
+        let [firsthero, secondhero, thirdhero ] = [...avengers];
+
+        console.log(firsthero, secondhero, thirdhero);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
