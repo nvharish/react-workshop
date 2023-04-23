@@ -1,0 +1,10 @@
+{
+    "port": 5000,
+    "host":"localhost",
+    "password":"87GBssGzAbfYlaQf",
+    "user":"nvharish",
+    "cluster":"mycluster",
+    "dbname":"userdb",
+    "dbstring":"hfvlwrl",
+    "url":"mongodb+srv://{{user}}:{{password}}@{{cluster}}.{{dbstring}}.mongodb.net/{{dbname}}?retryWrites=true&w=majority"
+}
